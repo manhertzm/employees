@@ -4,7 +4,7 @@ environment {
         VERSION_NUMBER = sh (
                     script: './mvnw help:evaluate -Dexpression=project.version -Dbuild.number=${BUILD_NUMBER} -q -DforceStdout',
                     returnStdout: true).trim()                
-        IMAGE_NAME = "manhertzm/employees:${VERSION_NUMBER}"
+        IMAGE_NAME = "kispista99/employees:${VERSION_NUMBER}"
 
     }  
     agent {
