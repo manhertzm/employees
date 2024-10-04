@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      MARIADB_DATABASE: employees
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes' # aposztrófok nélkül boolean true-ként értelmezi
+      MARIADB_USER: employees
+      MARIADB_PASSWORD: employees
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized"]
+      interval: 5s
+      retries: 3
+      timeout: 20s
+
+  employees-app:
+    image: employees:1.0.0
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    expose:
+      - 8080
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mariadb://mariadb:3306/employees'
+      SPRING_DATASOURCE_USERNAME: employees
+      SPRING_DATASOURCE_PASSWORD: employees
+    ports:
+      - 8087:8080
