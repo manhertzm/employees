@@ -1,0 +1,7 @@
+stages:
+  - commit
+
+commit-job:
+  stage: commit
+  script:
+    - echo "Commit stage"
