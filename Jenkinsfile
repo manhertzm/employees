@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent {
+        image 'eclipse-temurin:17'
+    }
 
     stages {
 
@@ -9,6 +11,7 @@ pipeline {
             steps {
 
                 echo "Commit stage"
+                sh './mvnw -B package'
 
             }
 
