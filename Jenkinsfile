@@ -1,8 +1,8 @@
 pipeline {
 
     agent {
-        image 'eclipse-temurin:17'
-    }
+  docker { image 'eclipse-temurin:17' }
+}
 
     stages {
 
