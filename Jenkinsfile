@@ -13,11 +13,7 @@ pipeline {
             }
 
         }    
-
-    }
-
-}
-
+            
 stage('Acceptance') {
 
     steps {
@@ -25,5 +21,10 @@ stage('Acceptance') {
         echo "Acceptance stage"
 
     }
+
+}
+
+    }
+
 
 }
